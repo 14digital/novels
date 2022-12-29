@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VLC Player Example</title>
-  <script src="https://14digital.github.io/novels/libvlc.js"></script>
+  <title>ExoPlayer Example</title>
+  <script src="https://storage.googleapis.com/exoplayer-bins/exoplayer-web-stable.js"></script>
 </head>
 <body>
-  <div id="vlc"></div>
+  <div id="player"></div>
   <script>
-    var vlc = new VLCPlayer(document.getElementById('vlc'));
-    vlc.play('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
+    var player = new ExoPlayer(document.getElementById('player'));
+    player.load('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
+    player.play();
   </script>
 </body>
 </html>
