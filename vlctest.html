@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Header Example</title>
+  <script type="text/javascript" src="http://www.videolan.org/vlc/libvlc.js"></script>
+  <style>
+    #myvideo {
+      width: 640px;
+      height: 480px;
+    }
+  </style>
+</head>
+<body>
+  <video id="myvideo" controls></video>
+  <script>
+    // Send the HTTP request with the custom header
+    fetch("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4”, {
+      headers: {
+        "Custom-Header": "your-custom-header-value"
+      }
+    })
+      .then(response => response.text())
+      .then(data => {
+        // Set the M3U8 file contents as the video source
+        var video = document.getElementById("myvideo");
+        video.src = URL.createObjectURL(new Blob([data], { type: "application/x-mpegURL" }));
+  
+        // Attach a VLC object to the video element
+        var vlc = new Vlc("myvideo", {
+          "controls": true,
+          "autoplay": true,
+          "mute": false
+        });
+  
+        // Start playback
+        vlc.play();
+      });
+  </script>
+</body>
+</html>
